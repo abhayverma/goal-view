@@ -1,0 +1,309 @@
+swagger: "2.0"
+info:
+  title: GoalView API
+  version: "1.0.0"
+  description: API to provide information about football teams, matches, players, and areas.
+
+servers:
+  - url: http://localhost:5000
+    description: Local server
+
+basePath: "/api"
+schemes:
+  - "http"
+
+paths:
+  /areas:
+    get:
+      tags:
+        - "Area"
+      summary: "Get all Areas"
+      description: "Retrieves a list of all areas."
+      responses:
+        200:
+          description: "List of areas"
+          schema:
+            type: "object"
+            properties:
+              areas:
+                type: "array"
+                items:
+                  type: "object"
+                  properties:
+                    id:
+                      type: "integer"
+                    name:
+                      type: "string"
+                    state:
+                      type: "string"
+                    country:
+                      type: "string"
+        500:
+          description: "Internal server error"
+
+    post:
+      tags:
+        - "Area"
+      summary: "Create a new Area"
+      description: "Creates a new area in the database."
+      parameters:
+        - in: "body"
+          name: "body"
+          description: "JSON object containing area data"
+          required: true
+          schema:
+            type: "object"
+            properties:
+              areas:
+                type: "array"
+                items:
+                  type: "object"
+                  properties:
+                    name:
+                      type: "string"
+                    state:
+                      type: "string"
+                    country:
+                      type: "string"
+      responses:
+        201:
+          description: "Area created successfully"
+          schema:
+            type: "object"
+            properties:
+              message:
+                type: "string"
+              area_ids:
+                type: "array"
+                items:
+                  type: "integer"
+        400:
+          description: "Invalid input"
+
+  /matches:
+    get:
+      tags:
+        - "Match"
+      summary: "Get all Matches"
+      description: "Retrieves a list of all matches."
+      responses:
+        200:
+          description: "List of matches"
+          schema:
+            type: "object"
+            properties:
+              matches:
+                type: "array"
+                items:
+                  type: "object"
+                  properties:
+                    id:
+                      type: "integer"
+                    name:
+                      type: "string"
+                    date:
+                      type: "string"
+                    location:
+                      type: "string"
+                    home_team_id:
+                      type: "integer"
+                    away_team_id:
+                      type: "integer"
+                    area_id:
+                      type: "integer"
+        500:
+          description: "Internal server error"
+
+    post:
+      tags:
+        - "Match"
+      summary: "Create a new Match"
+      description: "Creates a new match with home and away teams."
+      parameters:
+        - in: "body"
+          name: "body"
+          description: "JSON object containing match data"
+          required: true
+          schema:
+            type: "object"
+            properties:
+              matches:
+                type: "array"
+                items:
+                  type: "object"
+                  properties:
+                    name:
+                      type: "string"
+                      example: "Championship Final"
+                    date:
+                      type: "string"
+                      example: "2023-11-10"
+                    location:
+                      type: "string"
+                      example: "Stadium A"
+                    home_team_id:
+                      type: "integer"
+                      example: 1
+                    away_team_id:
+                      type: "integer"
+                      example: 2
+                    area_id:
+                      type: "integer"
+                      example: 1
+      responses:
+        201:
+          description: "Match created successfully"
+          schema:
+            type: "object"
+            properties:
+              message:
+                type: "string"
+              match_ids:
+                type: "array"
+                items:
+                  type: "integer"
+        400:
+          description: "Invalid input"
+
+  /players:
+    get:
+      tags:
+        - "Player"
+      summary: "Get all Players"
+      description: "Retrieves a list of all players."
+      responses:
+        200:
+          description: "List of players"
+          schema:
+            type: "object"
+            properties:
+              players:
+                type: "array"
+                items:
+                  type: "object"
+                  properties:
+                    id:
+                      type: "integer"
+                    name:
+                      type: "string"
+                    position:
+                      type: "string"
+                    photo_url:
+                      type: "string"
+        500:
+          description: "Internal server error"
+
+    post:
+      tags:
+        - "Player"
+      summary: "Create a new Player"
+      description: "Creates a new player in the database."
+      parameters:
+        - in: "body"
+          name: "body"
+          description: "JSON object containing player data"
+          required: true
+          schema:
+            type: "object"
+            properties:
+              players:
+                type: "array"
+                items:
+                  type: "object"
+                  properties:
+                    name:
+                      type: "string"
+                      example: "John Doe"
+                    position:
+                      type: "string"
+                      example: "Forward"
+                    photo_url:
+                      type: "string"
+                      example: "http://example.com/photo.jpg"
+                    team_id:
+                      type: "integer"
+                      example: 1
+      responses:
+        201:
+          description: "Player created successfully"
+          schema:
+            type: "object"
+            properties:
+              message:
+                type: "string"
+              player_ids:
+                type: "array"
+                items:
+                  type: "integer"
+        400:
+          description: "Invalid input"
+
+  /teams:
+    get:
+      tags:
+        - "Team"
+      summary: "Get all Teams"
+      description: "Retrieves a list of all teams."
+      responses:
+        200:
+          description: "List of teams"
+          schema:
+            type: "object"
+            properties:
+              teams:
+                type: "array"
+                items:
+                  type: "object"
+                  properties:
+                    id:
+                      type: "integer"
+                    name:
+                      type: "string"
+                    country:
+                      type: "string"
+                    logo_url:
+                      type: "string"
+        500:
+          description: "Internal server error"
+
+    post:
+      tags:
+        - "Team"
+      summary: "Create a new Team"
+      description: "Creates a new team in the database."
+      parameters:
+        - in: "body"
+          name: "body"
+          description: "JSON object containing team data"
+          required: true
+          schema:
+            type: "object"
+            properties:
+              teams:
+                type: "array"
+                items:
+                  type: "object"
+                  properties:
+                    name:
+                      type: "string"
+                      example: "The Invincibles"
+                    country:
+                      type: "string"
+                      example: "USA"
+                    logo_url:
+                      type: "string"
+                      example: "http://example.com/logo.jpg"
+      responses:
+        201:
+          description: "Team created successfully"
+          schema:
+            type: "object"
+            properties:
+              message:
+                type: "string"
+              team_ids:
+                type: "array"
+                items:
+                  type: "integer"
+        400:
+          description: "Invalid input"
