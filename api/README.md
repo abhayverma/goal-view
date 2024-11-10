@@ -53,7 +53,7 @@ Before running this app, you need to have the following software installed:
    ```
 If it's not installed, you can install it by running:
 ```
-python -m ensurepip --upgrade
+python3 -m ensurepip --upgrade
 ```
 # Installation
 Follow these steps to install and run the app:
@@ -72,7 +72,7 @@ cd <your-repository-folder>
 - Open Command Prompt or PowerShell and navigate to the project folder.
 - Run the following command to create a virtual environment:
 ```
-python -m venv venv
+python3 -m venv venv
 ```
 - Activate the virtual environment:
 #### For Command Prompt:
@@ -94,7 +94,7 @@ pip install -r requirements.txt
 
 Once the dependencies are installed, run the Flask application:
 ```
-python app.py
+python3 app.py
 ```
 or
 ```
@@ -144,7 +144,7 @@ To run the app locally:
 
 2. Start the Flask development server:
 ```
-python app.py
+python3 app.py
 ```
 OR
 ```
