@@ -58,6 +58,10 @@ flask run
 ```
 The API will be available at http://localhost:5000.
 
+If you face errors related to path issues, then run below command to register python path with your directory
+```
+export PYTHONPATH=$PYTHONPATH:$(pwd)/api
+```
 ### 2. **Setting Up Vue.js Frontend**
 #### Install Node.js Dependencies
 1. Navigate to the frontend directory:
@@ -76,6 +80,8 @@ npm install
 npm run dev
 ```
 The Vue.js app will be available at http://localhost:3000.
+
+#### Please make sure the flask server is running on another cli instance to fetch the API data
 
 ### 3. **Folder Structure Breakdown**
 ```
